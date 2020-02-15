@@ -4,8 +4,8 @@ package com.lace.enums;
  *
  * @author hackdaemon
  */
-public enum Gender {
+public enum AccountStatusEnum {
   
-  MALE, 
-  FEMALE;
+  ACTIVE,
+  INACTIVE;
 }

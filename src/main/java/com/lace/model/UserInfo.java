@@ -1,8 +1,8 @@
 package com.lace.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.lace.enums.Gender;
-import com.lace.enums.ProfileVerification;
+import com.lace.enums.GenderEnum;
+import com.lace.enums.ProfileVerificationEnum;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -28,12 +28,12 @@ public class UserInfo implements Serializable {
 
   @Enumerated(value = EnumType.STRING)
   @Builder.Default
-  private Gender gender = Gender.MALE;
+  private GenderEnum gender = GenderEnum.MALE;
 
   @Enumerated(value = EnumType.STRING)
   @JsonProperty("profile_verification")
   @Builder.Default
-  private ProfileVerification profileVerification = ProfileVerification.UNVERIFIED;
+  private ProfileVerificationEnum profileVerification = ProfileVerificationEnum.UNVERIFIED;
   
   @Builder.Default
   @Column(nullable = false, name = "is_admin")

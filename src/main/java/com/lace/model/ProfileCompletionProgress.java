@@ -23,11 +23,11 @@ import lombok.NoArgsConstructor;
  * @author hackdaemon
  */
 @Data
+@Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@Builder
-@Entity
 @Table(name="tbl_profile_completion")
 public class ProfileCompletionProgress extends AbstractEntity 
         implements Serializable {
@@ -41,6 +41,6 @@ public class ProfileCompletionProgress extends AbstractEntity
   @OneToMany
   @NotNull
   @Builder.Default
-  @JoinColumn("user_id")
+  @JoinColumn(name = "user_id")
   private List<User> user = new ArrayList<>();
 }

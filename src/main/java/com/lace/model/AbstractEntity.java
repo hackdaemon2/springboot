@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -15,7 +14,6 @@ import lombok.Data;
  * @author hackdaemon
  */
 @Data
-@Builder
 @MappedSuperclass
 public abstract class AbstractEntity {
 
@@ -25,15 +23,12 @@ public abstract class AbstractEntity {
   private Long id;
 
   @JsonIgnore
-  @Builder.Default
   private boolean deleted = false;
 
   @JsonIgnore
-  @Builder.Default
   private LocalDateTime createdAt = LocalDateTime.now();
 
   @JsonIgnore
-  @Builder.Default
   private LocalDateTime updatedAt = LocalDateTime.now();
 
 }

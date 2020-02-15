@@ -28,12 +28,12 @@ import org.springframework.data.annotation.LastModifiedBy;
  *
  * @author hackdaemon
  */
-@Entity
-@Table(name = "tbl_users")
 @Data
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "tbl_users")
 @EqualsAndHashCode(callSuper = false)
 public class User extends AbstractEntity
         implements Serializable {
@@ -82,7 +82,7 @@ public class User extends AbstractEntity
   private String updatedBy;
   
   @OneToMany
-  @JoinColumn("user_id")
+  @JoinColumn(name = "user_id")
   @Builder.Default
   private List<UserPhoto> userPhotos = new ArrayList<>();
   

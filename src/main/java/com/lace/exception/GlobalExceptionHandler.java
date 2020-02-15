@@ -46,12 +46,12 @@ public class GlobalExceptionHandler {
   public ResponseEntity<?> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
     ErrorResponse errorDetails;
     errorDetails = ErrorResponse.builder()
-                                   .timestamp(new Date())
-                                   .status(HttpStatus.NOT_FOUND.toString())
-                                   .message(ex.getMessage())
-                                   .details(request.getDescription(false))
-                                   .errorStatus(true)
-                                   .build();
+                                .timestamp(new Date())
+                                .status(HttpStatus.NOT_FOUND.toString())
+                                .message(ex.getMessage())
+                                .details(request.getDescription(false))
+                                .errorStatus(true)
+                                .build();
     return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
   }
 

@@ -2,6 +2,8 @@ package com.lace.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lace.enums.AccountStatusEnum;
+import com.lace.enums.AdminStatusEnum;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,6 +28,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "tbl_admin")
 public class AdminEntity extends AbstractEntity
@@ -32,14 +36,15 @@ public class AdminEntity extends AbstractEntity
 
   private static final long serialVersionUID = 1L;
 
+  @Builder.Default
   @Column(name = "account_status")
   @JsonProperty("account_status")
-  @NotEmpty(message = "Please provide account status")
-  private String accountStatus;
+  private AccountStatusEnum accountStatus = AccountStatusEnum.ACTIVE;
 
   @Column(name = "admin_status")
   @JsonProperty("admin_status")
-  private Long adminStatus;
+  @Builder.Default
+  private AdminStatusEnum adminStatus = AdminStatusEnum.ADMIN;
 
   @Column(name = "last_login_time")
   @JsonProperty("last_login_time")

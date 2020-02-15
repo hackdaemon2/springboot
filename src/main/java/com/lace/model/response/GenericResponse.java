@@ -1,11 +1,9 @@
 package com.lace.model.response;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  *
@@ -13,8 +11,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class GenericResponse {
 
@@ -23,4 +19,13 @@ public class GenericResponse {
   private String message;
   private List<Object> data;
   private List<Object> payload;
+  
+  public static GenericResponse buildLoginResponse() {
+    return GenericResponse
+      
+            .responseCode(responseCode)
+            .status(status)
+            .message(message)
+            .build();
+  }
 }

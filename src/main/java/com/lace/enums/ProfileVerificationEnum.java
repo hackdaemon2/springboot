@@ -4,7 +4,7 @@ package com.lace.enums;
  *
  * @author hackdaemon
  */
-public enum ProfileVerification {
+public enum ProfileVerificationEnum {
   
   PENDING, 
   UNVERIFIED, 
