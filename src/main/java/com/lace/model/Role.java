@@ -1,7 +1,8 @@
 package com.lace.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,19 +25,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name="tbl_roles")
-public class Role extends AbstractEntity 
-        implements Serializable {
+public class Role extends AbstractEntity {;
 
-  private static final long serialVersionUID = 1L;
-
+  @Builder.Default
   @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-  private User user;
+  private Set<User> user = new HashSet<>();
 
-  @Column(name = "created_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
   @JsonIgnore 
   private String createdBy;
 
-  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
   @JsonIgnore
   private String updatedBy;
 }

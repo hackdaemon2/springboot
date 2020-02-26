@@ -3,7 +3,6 @@ package com.lace.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lace.enums.GenderEnum;
 import com.lace.enums.ProfileVerificationEnum;
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Embeddable
-public class UserInfo implements Serializable {
+public class UserInfo {
 
   @Enumerated(value = EnumType.STRING)
   @Builder.Default
@@ -54,5 +53,5 @@ public class UserInfo implements Serializable {
   
   @Column(nullable = true, length = 6)
   @JsonProperty("confirmation_code")
-  private String cofirmationCode;
+  private String confirmationCode;
 }

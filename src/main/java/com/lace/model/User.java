@@ -1,7 +1,8 @@
 package com.lace.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
+import com.lace.constants.ApplicationConstants;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,9 +37,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 @Table(name = "tbl_users")
 @EqualsAndHashCode(callSuper = false)
 public class User extends AbstractEntity
-        implements Serializable {
-
-  private final long serialVersionUID = 1L;
+  implements ApplicationConstants {
 
   @Column(name = "first_name", nullable = false)
   @JsonProperty("first_name")
@@ -50,6 +49,10 @@ public class User extends AbstractEntity
 
   @Column(nullable = false, unique = true)
   private String email;
+  
+  @JsonIgnore
+  @Column(name = "password")
+  private String password;
   
   @Column(name = "mobile_number", nullable = false, unique = true)
   @JsonProperty("mobile_number")
@@ -71,12 +74,20 @@ public class User extends AbstractEntity
   @JoinColumn(name = "country_id")
   private Country country;
 
-  @Column(name = "created_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(
+    name = "created_by",
+    columnDefinition = "VARCHAR(255) DEFAULT 'admin'",
+    nullable = true
+  )
   @JsonProperty("created_by")
   @CreatedBy
   private String createdBy;
 
-  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(
+    name = "updated_by",
+    columnDefinition = "VARCHAR(255) DEFAULT 'admin'",
+    nullable = true
+  )
   @JsonProperty("updated_by")
   @LastModifiedBy
   private String updatedBy;
@@ -84,7 +95,7 @@ public class User extends AbstractEntity
   @OneToMany
   @JoinColumn(name = "user_id")
   @Builder.Default
-  private List<UserPhoto> userPhotos = new ArrayList<>();
+  private List<UserPhoto> userPhotos = new ArrayList<>(INITIAL_CAPACITY);
   
   public String getFullname() {
     return String.format("%s %s", firstName, lastName);

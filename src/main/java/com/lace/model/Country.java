@@ -1,7 +1,6 @@
 package com.lace.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -22,19 +21,16 @@ import org.springframework.data.annotation.LastModifiedBy;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "tbl_country")
-public class Country extends AbstractEntity
-        implements Serializable {
-
-  private final long serialVersionUID = 1L;
+public class Country extends AbstractEntity {
 
   private String name;
 
-  @Column(name = "created_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
   @JsonProperty("created_by")
   @CreatedBy
   private String createdBy;
 
-  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
   @JsonProperty("updated_by")
   @LastModifiedBy
   private String updatedBy;

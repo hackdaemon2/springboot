@@ -1,7 +1,6 @@
 package com.lace.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,20 +24,17 @@ import org.springframework.data.annotation.LastModifiedBy;
 @Table(name = "tbl_subscriptions")
 @XmlRootElement
 @EqualsAndHashCode(callSuper = false)
-public class Subscriptions extends AbstractEntity
-        implements Serializable {
-
-  private static final long serialVersionUID = 1L; 
-
+public class Subscriptions extends AbstractEntity {
+  
   private String name;
   private BigDecimal price;
   
-  @Column(name = "created_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
   @JsonProperty("created_by")
   @CreatedBy
   private String createdBy;
 
-  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) NOT NULL DEFAULT 'admin'")
+  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
   @JsonProperty("updated_by")
   @LastModifiedBy
   private String updatedBy;
