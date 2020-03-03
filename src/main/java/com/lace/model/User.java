@@ -3,6 +3,7 @@ package com.lace.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lace.constants.ApplicationConstants;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -58,6 +59,11 @@ public class User extends AbstractEntity
   @JsonProperty("mobile_number")
   private String mobileNumber;
   
+  @Builder.Default
+  @Column(name = "last_login_time", nullable = true)
+  @JsonProperty("last_login_time")
+  private LocalDateTime lastLoginTime = LocalDateTime.now();
+  
   @Embedded
   private UserInfo userInfo;
 
@@ -95,7 +101,7 @@ public class User extends AbstractEntity
   @OneToMany
   @JoinColumn(name = "user_id")
   @Builder.Default
-  private List<UserPhoto> userPhotos = new ArrayList<>(INITIAL_CAPACITY);
+  private List<UserPhoto> userPhotos = new ArrayList<>(INIT);
   
   public String getFullname() {
     return String.format("%s %s", firstName, lastName);
