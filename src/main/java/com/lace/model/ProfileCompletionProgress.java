@@ -26,15 +26,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@Table(name="tbl_profile_completion")
+@Table(name = "tbl_profile_completion")
 public class ProfileCompletionProgress extends AbstractEntity {
-  
-  @Enumerated(value = EnumType.STRING)
-  @JsonProperty("profile_completion")
-  private ProfileCompletion profileCompletion;
 
-  @OneToMany
-  @Builder.Default
-  @JoinColumn(name = "user_id")
-  private List<User> user = new ArrayList<>();
+    @Enumerated(value = EnumType.STRING)
+    @JsonProperty("profile_completion")
+    private ProfileCompletion profileCompletion;
+
+    @OneToMany
+    @Builder.Default
+    @JoinColumn(name = "user_id")
+    private List<User> user = new ArrayList<>();
 }

@@ -44,6 +44,11 @@ public class UserInfo {
   @Column(nullable = false, name = "is_staff")
   private Boolean isStaff = false;
   
+  @Builder.Default
+  @JsonProperty("is_active")
+  @Column(nullable = false, name = "is_active")
+  private Boolean isActive = false;
+  
   @Column(name = "bio_data", columnDefinition = "LONGTEXT", nullable = true)
   @JsonProperty("bio_data")
   private String bioData;

@@ -1,5 +1,6 @@
 package com.lace.config;
 
+import com.lace.service.UserAuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.lace.service.UserAuthService;
 
 @Slf4j
 @Configuration
@@ -26,18 +26,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Autowired
-    private UserAuthService userService;
+    private UserAuthService userAuthService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) {
+    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) {
         try { 
             // configure AuthenticationManager so that it knows from where to load
             // user for matching credentials
             // Use BCryptPasswordEncoder
-            auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+            authenticationManagerBuilder
+                .userDetailsService(userAuthService)
+                .passwordEncoder(passwordEncoder());
         } catch (Exception exception) {
             log.error(exception.getMessage());
         }
@@ -51,7 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        AuthenticationManager authenticationManager = super.authenticationManagerBean();
+        AuthenticationManager authenticationManager;
+        authenticationManager = super.authenticationManagerBean();
         return authenticationManager;
     }
 
@@ -59,12 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
             .csrf()
-            .disable() // We don't need CSRF for this example
+            .disable() // We don't need CSRF for REST API
                 .authorizeRequests()
                     .antMatchers(
-                        "/api/v1/login",
-                        "/api/v1/signup",
-                        "/api/v1/password/reset",
+                        "/api/v1/user/login",
+                        "/api/v1/user/signup",
+                        "/api/v1/user/password/reset",
                         "/api/v1/user/change/password*",
                         "/api/v1/user/update/password*"
                     ) 

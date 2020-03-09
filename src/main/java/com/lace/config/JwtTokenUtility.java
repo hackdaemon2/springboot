@@ -1,5 +1,6 @@
 package com.lace.config;
 
+import com.lace.constants.ApplicationConstants;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 
 @Component
-public class JwtTokenUtil 
-    implements Serializable, ApplicationConstants {
+public class JwtTokenUtility implements Serializable, ApplicationConstants {
 
     private static final long serialVersionUID = -2550185165626007488L;
 

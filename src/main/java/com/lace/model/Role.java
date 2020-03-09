@@ -1,6 +1,7 @@
 package com.lace.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lace.constants.ApplicationConstants;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -26,32 +27,34 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @Entity
-@Table(name="tbl_roles")
-public class Role extends AbstractEntity {
+@Table(name = "tbl_roles")
+public class Role extends AbstractEntity implements ApplicationConstants {
+    
+    private String name;
 
-  @Builder.Default
-  @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-  private Set<User> user = new HashSet<>();
+    @Builder.Default
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set<User> user = new HashSet<>(INIT);
 
-  @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
-  @JsonIgnore 
-  private String createdBy;
-  
-  @ManyToMany
-  @JoinTable(
-    name = "roles_privileges", 
-    joinColumns = @JoinColumn(
-        name = "role_id", 
-        referencedColumnName = "id"
-    ), 
-    inverseJoinColumns = @JoinColumn(
-        name = "privilege_id",
-        referencedColumnName = "id"
+    @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
+    @JsonIgnore
+    private String createdBy;
+
+    @ManyToMany
+    @JoinTable(
+        name = "roles_privileges",
+        joinColumns = @JoinColumn(
+            name = "role_id",
+            referencedColumnName = "id"
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name = "privilege_id",
+            referencedColumnName = "id"
+        )
     )
-   )
-   private Set<Privilege> privileges; 
+    private Set<Privilege> privileges;
 
-  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
-  @JsonIgnore
-  private String updatedBy;
+    @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
+    @JsonIgnore
+    private String updatedBy;
 }

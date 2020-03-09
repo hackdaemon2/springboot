@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @Entity
-@Table(name="tbl_priviledge")
-class Privilege extends AbstractEntity {
-    
+@Table(name = "tbl_priviledge")
+public class Privilege extends AbstractEntity {
+
     private String name;
- 
+
     @ManyToMany(mappedBy = "privileges")
     private Set<Role> roles;
 }

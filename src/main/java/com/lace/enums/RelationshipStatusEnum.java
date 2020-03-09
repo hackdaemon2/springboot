@@ -6,10 +6,10 @@ package com.lace.enums;
  */
 public enum RelationshipStatusEnum {
 
-  SINGLE,
-  MARRIED,
-  DIVORCED,
-  OPEN_RELATIONSHIP,
-  IN_A_RELATIONSHIP,
-  COMPLICATED;
+    SINGLE,
+    MARRIED,
+    DIVORCED,
+    OPEN_RELATIONSHIP,
+    IN_A_RELATIONSHIP,
+    COMPLICATED;
 }

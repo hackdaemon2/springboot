@@ -9,8 +9,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JwtAuthenticationEntryPoint 
-    implements AuthenticationEntryPoint, Serializable {
+public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 
     private static final long serialVersionUID = -7858869558953243875L;
 
@@ -18,7 +17,7 @@ public class JwtAuthenticationEntryPoint
     public void commence(
         HttpServletRequest request,
         HttpServletResponse response,
-        AuthenticationException authException
+        AuthenticationException authenticationException
     ) throws IOException {
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }

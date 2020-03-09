@@ -23,15 +23,15 @@ import org.springframework.data.annotation.LastModifiedBy;
 @Table(name = "tbl_country")
 public class Country extends AbstractEntity {
 
-  private String name;
+    private String name;
 
-  @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
-  @JsonProperty("created_by")
-  @CreatedBy
-  private String createdBy;
+    @Column(name = "created_by", columnDefinition = "VARCHAR(255) DEFAULT 'system'")
+    @JsonProperty("created_by")
+    @CreatedBy
+    private String createdBy;
 
-  @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'admin'")
-  @JsonProperty("updated_by")
-  @LastModifiedBy
-  private String updatedBy;
+    @Column(name = "updated_by", columnDefinition = "VARCHAR(255) DEFAULT 'system'")
+    @JsonProperty("updated_by")
+    @LastModifiedBy
+    private String updatedBy;
 }

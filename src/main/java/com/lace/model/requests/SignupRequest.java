@@ -27,42 +27,42 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SignupRequest {
 
-  @NotNull(message = "mobile number required")
-  @Size(min = 11, max = 11, message = "mobile number must be 11 digits")
-  @NotBlank(message = "mobile number cannot be blank")
-  @JsonProperty("mobile_number")
-  private String mobileNumber;
+    @NotNull(message = "{mobilenumber.required}")
+    @Size(min = 11, max = 11, message = "{mobilenumber.size}")
+    @NotBlank(message = "{mobilenumber.blank}")
+    @JsonProperty("mobile_number")
+    private String mobileNumber;
 
-  @NotNull(message = "password is required")
-  @Size(min = 8, max = 255, message = "password must be between 8 and 255 characters")
-  @JsonProperty("password")
-  @NotBlank(message = "password cannot be blank")
-  private String password;
+    @NotNull(message = "{password.required}")
+    @Size(min = 8, max = 255, message = "{password.size}")
+    @JsonProperty("password")
+    @NotBlank(message = "{password.blank}")
+    private String password;
 
-  @NotNull(message = "confirm password is required")
-  @Size(min = 8, max = 255, message = "confirm password must be between 8 and 255 characters")
-  @JsonProperty("confirm_password")
-  @NotBlank(message = "confirm password cannot be blank")
-  private String confirmPassword;
+    @NotNull(message = "{password.confirm.required}")
+    @Size(min = 8, max = 255, message = "{password.confirm.size}")
+    @NotBlank(message = "{password.confirm.blank}")
+    @JsonProperty("confirm_password")
+    private String confirmPassword;
 
-  @NotNull(message = "email is required")
-  @Size(min = 5, max = 255, message = "email must be between 5 and 255 characters")
-  @Email(message = "enter a valid email")
-  @NotBlank(message = "email cannot be blank")
-  private String email;
+    @NotNull(message = "{email.required}")
+    @Size(min = 5, max = 255, message = "{email.size}")
+    @Email(message = "{email.valid}")
+    @NotBlank(message = "{email.blank}")
+    private String email;
 
-  @NotNull(message = "first name is required")
-  @Size(min = 2, max = 255, message = "first name must be between 2 and 255 characters")
-  @JsonProperty("first_name")
-  @NotBlank(message = "first name cannot be blank")
-  private String firstName;
+    @NotNull(message = "{firstname.required}")
+    @Size(min = 2, max = 255, message = "{firstname.size}")
+    @NotBlank(message = "{firstname.blank}")
+    @JsonProperty("first_name")
+    private String firstName;
 
-  @NotNull(message = "last name is required")
-  @Size(min = 2, max = 255, message = "last name must be between 2 and 255 characters")
-  @JsonProperty("last_name")
-  @NotBlank(message = "last name cannot be blank")
-  private String lastName;
+    @NotNull(message = "{lastname.required}")
+    @Size(min = 2, max = 255, message = "{lastname.size}")
+    @NotBlank(message = "{lastname.blank}")
+    @JsonProperty("last_name")
+    private String lastName;
 
-  @Builder.Default
-  private GenderEnum gender = GenderEnum.MALE;
+    @Builder.Default
+    private GenderEnum gender = GenderEnum.MALE;
 }

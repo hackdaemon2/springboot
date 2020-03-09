@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,15 +22,16 @@ import lombok.EqualsAndHashCode;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "tbl_password_reset_token")
 @EqualsAndHashCode(callSuper = false)
 public class PasswordResetToken extends AbstractEntity implements ApplicationConstants {
-  
+
     private String token;
-  
+
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
-  
+
     @Builder.Default
-    private LocalDateTime expiryDate = LocalDateTime.now();
+    private LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(EXPIRATION);
 }

@@ -1,5 +1,6 @@
 package com.lace.config;
 
+import com.lace.constants.ApplicationConstants;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,14 +19,13 @@ import com.lace.service.UserAuthService;
 
 @Slf4j
 @Component
-public class JwtRequestFilter extends OncePerRequestFilter 
-    implements ApplicationConstants {
+public class JwtRequestFilter extends OncePerRequestFilter implements ApplicationConstants {
 
     @Autowired
     private UserAuthService userService;
 
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtility jwtTokenUtility;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) 
@@ -37,7 +37,7 @@ public class JwtRequestFilter extends OncePerRequestFilter
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(STRING_SIZE);
             try {
-                username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+                username = jwtTokenUtility.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException exception) {
                 log.error("Unable to get JWT Token");
                 log.error(exception.getMessage());
@@ -52,7 +52,7 @@ public class JwtRequestFilter extends OncePerRequestFilter
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.loadUserByUsername(username);
             // if token is valid configure Spring Security to manually set authentication
-            if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
+            if (jwtTokenUtility.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken;
                 authToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities()

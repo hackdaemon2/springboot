@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author centricgateway
  */
 @Repository
-public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {}
+public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
+    PasswordResetToken findByToken(final String token);
+}

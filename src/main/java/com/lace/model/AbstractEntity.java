@@ -16,23 +16,22 @@ import lombok.Data;
  */
 @Data
 @MappedSuperclass
-public abstract class AbstractEntity
-  implements Serializable {
-  
-  private static final long serialVersionUID = 1L;
+public abstract class AbstractEntity implements Serializable {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private Long id;
+    private static final long serialVersionUID = 1L;
 
-  @JsonIgnore
-  private boolean deleted = false;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-  @JsonIgnore
-  private LocalDateTime createdAt = LocalDateTime.now();
+    @JsonIgnore
+    private boolean deleted = false;
 
-  @JsonIgnore
-  private LocalDateTime updatedAt = LocalDateTime.now();
+    @JsonIgnore
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @JsonIgnore
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
 }

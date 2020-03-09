@@ -10,6 +10,7 @@ public class ResourceErrorMessage {
 
     private StringBuilder errorMessageBuffer;
     private String errorMessage;
+    
     private static volatile ResourceErrorMessage instance;
 
     /**

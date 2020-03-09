@@ -17,11 +17,11 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class LoginRequest {
 
-  @NotNull(message = "required")
-  @JsonProperty("mobile_number")
-  private String mobileNumber;
-  
-  @NotNull(message = "required")
-  @JsonProperty("password")
-  private String password;
+    @NotNull(message = "{mobilenumber.required}")
+    @JsonProperty("mobile_number")
+    private String mobileNumber;
+
+    @NotNull(message = "{password.required}")
+    @JsonProperty("password")
+    private String password;
 }

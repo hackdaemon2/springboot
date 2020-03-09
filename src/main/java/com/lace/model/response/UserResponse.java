@@ -1,7 +1,11 @@
 package com.lace.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lace.model.Privilege;
+import com.lace.model.Role;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,4 +44,12 @@ public class UserResponse {
 
     @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
+    
+    @Builder.Default
+    @JsonProperty("user_roles")
+    private List<Role> userRoles = new ArrayList<>(1);
+    
+    @Builder.Default
+    @JsonProperty("user_privileges")
+    private List<Privilege> privileges = new ArrayList<>(1);
 }

@@ -25,9 +25,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PasswordResetRequest {
 
-  @NotNull(message = "email is required")
-  @Size(min = 5, max = 255, message = "email must be between 5 and 255 characters")
-  @Email(message = "enter a valid email")
-  @NotBlank(message = "email cannot be blank")
-  private String email;
+    @NotNull(message = "{email.required}")
+    @Size(min = 5, max = 255, message = "{email.size}")
+    @Email(message = "{email.valid}")
+    @NotBlank(message = "{email.blank}")
+    private String email;
 }

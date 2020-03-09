@@ -27,4 +27,7 @@ public class AuthenticationResponse {
     private LocalDateTime expiresAt;
     
     private String issuer;
+    
+    @JsonProperty("user_payload")
+    private UserResponse user;
 }
